@@ -6,7 +6,12 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json())
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://backlog:9Wv0YEAqVwKIzJ5K@cluster0.ne4hply.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+
+///////////////////// Hod-blogSchema
+const { handleGetBlogs } = require('./routes/handleGetBlogs');
+///////////////////// Hod-blogSchema
+
+mongoose.connect(process.env.MONGO_PORT, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("CONNECTION OPEN!!!")
     })
@@ -18,3 +23,7 @@ mongoose.connect('mongodb+srv://backlog:9Wv0YEAqVwKIzJ5K@cluster0.ne4hply.mongod
 app.listen(3001, () => {
     console.log('welcome to radio 3001')
 })
+
+///////////////////// Hod-blogSchema
+app.get('/blog', handleGetBlogs)
+///////////////////// Hod-blogSchema
