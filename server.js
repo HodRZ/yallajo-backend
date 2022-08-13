@@ -4,6 +4,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 app.use(cors());
+
+///partials imports
+///////////////////// Eyad-citySearchBackend
+const { handleApi } = require("./modules/testLocation");
+
+///////////////////// Hod-blogSchema
+const { handleGetBlogs } = require('./routes/handleGetBlogs');
+--------------------------------------
 app.use(express.json());
 const mongoose = require("mongoose");
 mongoose
@@ -19,13 +27,15 @@ mongoose
     console.log(err);
   });
 
-//// by Eyad branch name city search backend
-
-const { handleApi } = require("./modules/testLocation");
-app.get("/city", handleApi);
-
-/// by Eyad branch name city search backend
-
 app.listen(3001, () => {
   console.log("welcome to radio 3001");
 });
+---------------------------------------
+//Paths
+///////////////////// Eyad-citySearchBackend
+app.get("/city", handleApi);
+
+///////////////////// Hod-blogSchema
+app.get('/blog', handleGetBlogs)
+
+
