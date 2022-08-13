@@ -39,4 +39,8 @@ const roomRental = new serviceModel({
   isAvailable: true,
 });
 
+// roomRental.save()
+// tour.save()
+// carRental.save()
+
 module.exports = serviceModel;

@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect(`${process.env.DATABASE_LOCAL}/services`, {
+  .connect(process.env.MONGO_PORT, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

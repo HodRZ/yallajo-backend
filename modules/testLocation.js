@@ -11,15 +11,15 @@ async function handleApi(req, res) {
   // res.send(searchQuery);
   try {
     const cityLocation = await axios.get(
-      `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${searchQuery}&format=json`
-    );
+      `https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_KEY}&q=${searchQuery}&format=json`
+    ).catch(function (error) { console.log(error) });
     latitude = cityLocation.data[0].lat;
     longitude = cityLocation.data[0].lon;
     // dataCollection[cityLocation] = cityLocation;/
     dataCollection.lat = cityLocation.data[0].lat;
     dataCollection.lon = cityLocation.data[0].lon;
-    // console.log(cityLocation.data[0]);
-    const mapSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${latitude},${longitude}&zoom=13`;
+    console.log(cityLocation);
+    const mapSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.LOCATION_KEY}&center=${latitude},${longitude}&zoom=13`;
     dataCollection.map = mapSrc;
   } catch (error) {
     // errorHandler(error, res);
