@@ -1,9 +1,12 @@
 "use strict";
+
 require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
 app.use(cors());
+app.use(express.json());
+const mongoose = require("mongoose");
 
 ///partials imports
 ///////////////////// Eyad-citySearchBackend
@@ -11,9 +14,11 @@ const { handleApi } = require("./modules/testLocation");
 
 ///////////////////// Hod-blogSchema
 const { handleGetBlogs } = require('./routes/handleGetBlogs');
+
+/////////////////////Malek-servicesBackend
+const handleService = require("./modules/handleService");
 --------------------------------------
-app.use(express.json());
-const mongoose = require("mongoose");
+
 mongoose
   .connect(process.env.MONGO_PORT, {
     useNewUrlParser: true,
@@ -38,4 +43,11 @@ app.get("/city", handleApi);
 ///////////////////// Hod-blogSchema
 app.get('/blog', handleGetBlogs)
 
-
+/////////////////////Malek-servicesBackend
+app.get("/", (req, res) => {
+  res.send("hello from my server!");
+});
+app.get("/service", handleService);
+app.get("*", (req, res) => {
+  res.status(404).json({ "error ": "Page Not Found!" });
+});
