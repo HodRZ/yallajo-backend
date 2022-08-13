@@ -1,20 +1,27 @@
-'use strict'
-require('dotenv').config()
-const express = require("express")
-const app = express()
-const cors = require('cors');
-app.use(cors());
-app.use(express.json())
-const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://backlog:9Wv0YEAqVwKIzJ5K@cluster0.ne4hply.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log("CONNECTION OPEN!!!")
-    })
-    .catch(err => {
-        console.log("OH NO ERROR!!!!")
-        console.log(err)
-    })
+"use strict";
 
-app.listen(3001, () => {
-    console.log('welcome to radio 3001')
-})
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+app.use(cors());
+app.use(express.json());
+// @Malek Hamdan
+const handleService = require("./modules/handleService");
+// @Malek Hamdan
+const PORT = process.env.PORT || 8080;
+// @Malek Hamdan
+app.get("/", (req, res) => {
+  res.send("hello from my server!");
+});
+
+// @Malek Hamdan
+app.get("/service", handleService);
+// @Malek Hamdan
+app.get("*", (req, res) => {
+  res.status(404).json({ "error ": "Page Not Found!" });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server Running on PORT ${PORT} Successfully!`);
+});
