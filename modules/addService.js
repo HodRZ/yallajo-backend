@@ -2,8 +2,7 @@
 const serviceModel = require('../database/models/serviceModel');
 
 function addService(req,res){
-    
-    console.log(req.body)
+
     const {newService} = req.body;
     const service = new serviceModel(newService);
     service.save(); 

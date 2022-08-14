@@ -17,7 +17,6 @@ async function handleGetApiData(req, res) {
 
     dataCollection.lat = cityLocation.data[0].lat;
     dataCollection.lon = cityLocation.data[0].lon;
-    console.log(cityLocation);
     const mapSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.LOCATION_KEY}&center=${latitude},${longitude}&zoom=13`;
     dataCollection.map = mapSrc;
   } catch (error) {

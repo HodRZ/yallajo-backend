@@ -5,7 +5,6 @@ const articleModel = require('../database/models/articleModel');
 
 function addArticle(req,res){
 
-    console.log(req.body)
     const {newArticle} = req.body;
     const article = new articleModel(newArticle);
     article.save();

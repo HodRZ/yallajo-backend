@@ -21,6 +21,8 @@ const addArticle = require('./modules/addArticle')
 const connectDB = require("./database/connection/connectDB");
 // @Malek
 const addNewUser = require('./modules/addNewUser');
+// @Eyad
+const findUserById = require('./modules/findUserById');
 // --------------------------------------
 const PORT = process.env.PORT || 8080;
 // ---------------------------------------
@@ -37,15 +39,18 @@ app.get("/", (req, res) => {
 });
 // edit the fuction name By Malek
 app.get("/service", handleGetService);
-app.get("*", (req, res) => {
-  res.status(404).json({ "error ": "Page Not Found!" });
-});
+
 // Add post new service By Malek
 app.post('/service',addService);
 // Add post new article By Malek
 app.post('/article',addArticle);
 // Add post new User
 app.post('/user',addNewUser);
+// Eyad
+app.get('/user/:id', findUserById);
+app.get("*", (req, res) => {
+  res.status(404).json({ "error ": "Page Not Found!" });
+});
 app.listen(PORT, () => {
   console.log(`Server Running on PORT ${PORT} Sucessfully!`);
 });
