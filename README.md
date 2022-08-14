@@ -30,10 +30,10 @@
   - addArticle.
 
 #### It was tested and passed successfully
-> app.get("/city", handleGetApiData);
-> app.get('/blog', handleGetBlogs);
-> app.post('/service',addService);
-> app.post('/article',addArticle);
-> app.post('/user',addNewUser);
+> **app.get("/city", handleGetApiData);**
+> **app.get('/blog', handleGetBlogs);**
+> **app.post('/service',addService);**
+> **app.post('/article',addArticle);**
+> **app.post('/user',addNewUser);**
 
 ### > add temp folder to put the unorgnaized code.
