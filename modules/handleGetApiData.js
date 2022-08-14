@@ -1,21 +1,20 @@
 "use strict";
 const axios = require("axios");
 
-async function handleApi(req, res) {
+async function handleGetApiData(req, res) {
   const searchQuery = req.query.searchQuery;
   let latitude;
   let longitude;
   const dataCollection = {};
 
-  // console.log(searchQuery);
-  // res.send(searchQuery);
+
   try {
     const cityLocation = await axios.get(
       `https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_KEY}&q=${searchQuery}&format=json`
     ).catch(function (error) { console.log(error) });
     latitude = cityLocation.data[0].lat;
     longitude = cityLocation.data[0].lon;
-    // dataCollection[cityLocation] = cityLocation;/
+
     dataCollection.lat = cityLocation.data[0].lat;
     dataCollection.lon = cityLocation.data[0].lon;
     console.log(cityLocation);
@@ -31,11 +30,11 @@ async function handleApi(req, res) {
     );
     const weatherData = cityWeather.data.data.map((item) => new Forecast(item));
     dataCollection.weatherForecast = weatherData;
-    // dataCollection.push(weatherData);
+
   } catch (error) {
     // errorHandler(error, res);
   }
-  // console.log(dataCollection[1]);
+
 
   try {
     const unsplash = await axios.get(
@@ -46,28 +45,15 @@ async function handleApi(req, res) {
   } catch (error) {
     // errorHandler(error, res);
   }
-  //   console.log(searchQuery);
-  //   res.send(searchQuery);
+  console.log("form handleGetApiData");
   res.send(dataCollection);
 }
 
-// class Images {
-//   constructor(img) {
-//     this.img_url = img.urls.regular;
-//   }
-// }
+
 class Forecast {
   constructor(day) {
     this.date = day.datetime;
     this.description = day.weather.description;
   }
 }
-
-module.exports = { handleApi };
-
-// const mapSrc = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${lat},${lon}&zoom=18`;
-// const display_name = cityLocation.data[0].display_name;
-// const latitude = cityLocation.data[0].lat;
-// const longitude = cityLocation.data[0].lon;
-// const map_Src = mapSrc;
-// console.log(display_name, latitude);
+module.exports = { handleGetApiData };

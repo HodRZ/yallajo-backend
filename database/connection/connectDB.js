@@ -1,8 +1,8 @@
 "use strict";
 const mongoose = require("mongoose");
-
+// work Done!
 mongoose
-  .connect(process.env.MONGO_PORT, {
+  .connect(`${process.env.DATABASE_LOCAL}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

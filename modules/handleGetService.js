@@ -1,7 +1,8 @@
 "use strict";
-const serviceModel = require("../database/serviceDB");
+// work Done!
+const serviceModel = require("../database/models/serviceModel");
 
-function handleService(req, res) {
+function handleGetService(req, res) {
   const searchQuery = req.query.searchQuery;
 
   serviceModel.find({ type: searchQuery, isAvailable: true }, (error, data) => {
@@ -12,4 +13,4 @@ function handleService(req, res) {
   });
 }
 
-module.exports = handleService;
+module.exports = handleGetService;
