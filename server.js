@@ -13,7 +13,7 @@ const mongoose = require("mongoose");
 const { handleApi } = require("./modules/testLocation");
 
 ///////////////////// Hod-blogSchema
-const { handleGetBlogs } = require('./routes/handleGetBlogs');
+const { handleGetBlogs } = require("./routes/handleGetBlogs");
 
 /////////////////////Malek-servicesBackend
 const handleService = require("./modules/handleService");
@@ -39,9 +39,16 @@ app.listen(3001, () => {
 //Paths
 ///////////////////// Eyad-citySearchBackend
 app.get("/city", handleApi);
+///////////////////// Eyad-citySearchBackend
+///////////////////// Eyad-findUserByID-backEnd
+const profileModel = require("./database/user");
+app.get("/profile", profileModel);
+const findById = require("./modules/showProfile");
+app.get("/user/:id", findById);
+///////////////////// Eyad-findUserByID-backEnd
 
 ///////////////////// Hod-blogSchema
-app.get('/blog', handleGetBlogs)
+app.get("/blog", handleGetBlogs);
 
 /////////////////////Malek-servicesBackend
 app.get("/", (req, res) => {
@@ -51,4 +58,3 @@ app.get("/service", handleService);
 app.get("*", (req, res) => {
   res.status(404).json({ "error ": "Page Not Found!" });
 });
-
