@@ -7,11 +7,14 @@ async function handleGetApiData(req, res) {
   let longitude;
   const dataCollection = {};
 
-
   try {
-    const cityLocation = await axios.get(
-      `https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_KEY}&q=${searchQuery}&format=json`
-    ).catch(function (error) { console.log(error) });
+    const cityLocation = await axios
+      .get(
+        `https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_KEY}&q=${searchQuery}&format=json`
+      )
+      .catch(function (error) {
+        console.log(error);
+      });
     latitude = cityLocation.data[0].lat;
     longitude = cityLocation.data[0].lon;
 
@@ -29,11 +32,9 @@ async function handleGetApiData(req, res) {
     );
     const weatherData = cityWeather.data.data.map((item) => new Forecast(item));
     dataCollection.weatherForecast = weatherData;
-
   } catch (error) {
     // errorHandler(error, res);
   }
-
 
   try {
     const unsplash = await axios.get(
@@ -47,7 +48,6 @@ async function handleGetApiData(req, res) {
   console.log("form handleGetApiData");
   res.send(dataCollection);
 }
-
 
 class Forecast {
   constructor(day) {
