@@ -1,17 +1,17 @@
 'use strict';
-const blogModel = require("../database/models/blogModel");
+const serviceModel = require("../database/models/serviceModel");
 
-function editBlog(req, res) {
+function editService(req, res) {
     const id = req.params.id;
     const { data } = req.body;
     console.log(data)
-    blogModel.findByIdAndUpdate(id, data, { new: true }).then(record => {
+    serviceModel.findByIdAndUpdate(id, data, { new: true }).then(record => {
         res.send(record);
     }).catch(err => {
         console.log(err)
         res.status(500).send(err.message);
     })
 }
-module.exports = editBlog;
+module.exports = editService;
 
 
