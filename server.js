@@ -27,6 +27,7 @@ const editBlog = require("./modules/editBlog");
 const findBlogById = require("./modules/findBlogById");
 const findServiceById = require("./modules/findServiceById");
 const editService = require("./modules/editService");
+const findUserByEmail = require("./modules/findUserbyEmail");
 // --------------------------------------
 const PORT = process.env.PORT || 8080;
 // ---------------------------------------
@@ -43,7 +44,7 @@ app.get("/service", handleGetService);
 app.get('/service/:id', findServiceById)
 app.put('/service/:id', editService)
 // Eyad
-app.get("/user/:id", findUserById);
+
 // Add post new service By Malek
 app.post("/service", addService);
 // Add post new article By Malek
@@ -52,6 +53,8 @@ app.put('/blog/:id', editBlog)
 app.get('/blog/:id', findBlogById)
 // Add post new User// not used
 app.post("/user", addNewUser);
+app.get("/user", findUserByEmail);
+app.get("/user/:id", findUserById);
 // unknown routes
 app.get("*", (req, res) => {
   res.status(404).json({ "error ": "Page Not Found!" });

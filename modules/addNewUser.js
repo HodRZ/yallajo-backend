@@ -3,7 +3,6 @@ const userModel = require('../database/models/userModel')
 function addNewUser(req, res) {
 
     const user = req.body;
-    console.log(user)
     userModel.find({ email: user.email }, (error, data) => {
         if (error) console.log(`Blog not found ${error}`);
         else {
