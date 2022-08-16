@@ -25,6 +25,8 @@ const addNewUser = require("./modules/addNewUser");
 const findUserById = require("./modules/findUserById");
 const editBlog = require("./modules/editBlog");
 const findBlogById = require("./modules/findBlogById");
+const findServiceById = require("./modules/findServiceById");
+const editService = require("./modules/editService");
 // --------------------------------------
 const PORT = process.env.PORT || 8080;
 // ---------------------------------------
@@ -38,6 +40,8 @@ app.get("/", (req, res) => {
 });
 // edit the fuction name By Malek
 app.get("/service", handleGetService);
+app.get('/service/:id', findServiceById)
+app.put('/service/:id', editService)
 // Eyad
 app.get("/user/:id", findUserById);
 // Add post new service By Malek
