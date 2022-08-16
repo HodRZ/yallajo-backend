@@ -23,6 +23,8 @@ const connectDB = require("./database/connection/connectDB");
 const addNewUser = require("./modules/addNewUser");
 // @Eyad
 const findUserById = require("./modules/findUserById");
+const editBlog = require("./modules/editBlog");
+const findBlogById = require("./modules/findBlogById");
 // --------------------------------------
 const PORT = process.env.PORT || 8080;
 // ---------------------------------------
@@ -42,6 +44,8 @@ app.get("/user/:id", findUserById);
 app.post("/service", addService);
 // Add post new article By Malek
 app.post("/blog", addBlog);
+app.put('/blog/:id', editBlog)
+app.get('/blog/:id', findBlogById)
 // Add post new User// not used
 app.post("/user", addNewUser);
 // unknown routes

@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const articleModel = require("../database/models/blogModel");
 
-function addArticle(req, res) {
+function addBlog(req, res) {
   const { newBlog } = req.body;
   const blog = new articleModel(newBlog);
   blog.save();
@@ -10,4 +10,4 @@ function addArticle(req, res) {
   res.status(201).json(blog);
 }
 
-module.exports = addArticle;
+module.exports = addBlog;
