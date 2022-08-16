@@ -8,6 +8,6 @@ const serviceSchema = new mongoose.Schema({
   image: String,
   price: Number,
   isAvailable: Boolean,
-});
+}, { timestamps: true });
 
 module.exports = serviceSchema;

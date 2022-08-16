@@ -3,10 +3,17 @@ const mongoose = require("mongoose");
 
 
 const userSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    email: String,
-    //blog: [blog_id]
-    //services:[service_id] 
-  });
-  module.exports = userSchema;
+  name: String,
+  image: String,
+  email: String,
+  blogs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'blogModel'
+  }],
+  services: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'serviceModel'
+  }]
+}, { timestamps: true });
+
+module.exports = userSchema;
