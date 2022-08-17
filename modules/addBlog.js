@@ -1,10 +1,10 @@
 "use strict";
 const mongoose = require("mongoose");
-const articleModel = require("../database/models/blogModel");
+const blogModel = require("../database/models/blogModel");
 
 function addBlog(req, res) {
   const { newBlog } = req.body;
-  const blog = new articleModel(newBlog);
+  const blog = new blogModel(newBlog);
   blog.save();
 
   res.status(201).json(blog);
