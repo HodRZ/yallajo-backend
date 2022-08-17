@@ -5,6 +5,10 @@ const blogSchema = new mongoose.Schema({
   keyword: String,
   content: String,
   image: String,
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'userModel'
+  }
 }, { timestamps: true });
 
 module.exports = blogSchema;

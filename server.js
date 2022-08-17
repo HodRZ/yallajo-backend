@@ -28,6 +28,7 @@ const findBlogById = require("./modules/findBlogById");
 const findServiceById = require("./modules/findServiceById");
 const editService = require("./modules/editService");
 const findUserByEmail = require("./modules/findUserbyEmail");
+const addBlogWithUser = require("./modules/addBlogWithUser");
 // --------------------------------------
 const PORT = process.env.PORT || 8080;
 // ---------------------------------------
@@ -55,6 +56,7 @@ app.get('/blog/:id', findBlogById)
 app.post("/user", addNewUser);
 app.get("/user", findUserByEmail);
 app.get("/user/:id", findUserById);
+app.post('/user/:id/blog', addBlogWithUser)
 // unknown routes
 app.get("*", (req, res) => {
   res.status(404).json({ "error ": "Page Not Found!" });
