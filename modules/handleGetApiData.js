@@ -45,7 +45,6 @@ async function handleGetApiData(req, res) {
   } catch (error) {
     // errorHandler(error, res);
   }
-  console.log("form handleGetApiData");
   res.send(dataCollection);
 }
 
